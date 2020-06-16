@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import "./ProfileIcon.css";
 
 class ProfileIcon extends Component {
   constructor(props) {
@@ -36,13 +37,15 @@ class ProfileIcon extends Component {
             />
           </DropdownToggle>
           <DropdownMenu
-            className="b--transparent shadow-5"
+            className="b--transparent shadow-5 dropdown-menu-right"
             style={{
               backgroundColor: "rgba(255,255,255,0.5)",
             }}
           >
             <DropdownItem>View Profile</DropdownItem>
-            <DropdownItem>Sign Out</DropdownItem>
+            <DropdownItem onClick={() => this.props.onRouteChange("signout")}>
+              Sign Out
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>
