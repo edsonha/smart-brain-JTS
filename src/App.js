@@ -29,7 +29,7 @@ const initialState = {
   boxes: [],
   route: "home",
   isSignedIn: true,
-  isProfileOpen: true,
+  isProfileOpen: false,
   user: {
     id: "",
     name: "",
@@ -119,7 +119,7 @@ class App extends Component {
   };
 
   toggleModal = () => {
-    this.state((prevState) => ({
+    this.setState((prevState) => ({
       ...prevState,
       isProfileOpen: !prevState.isProfileOpen,
     }));
@@ -137,7 +137,10 @@ class App extends Component {
         />
         {isProfileOpen && (
           <Modal>
-            <h1>{"HELLO from REACT PORTAL"}</h1>
+            <Profile
+              isProfileOpen={isProfileOpen}
+              toggleModal={this.toggleModal}
+            />
           </Modal>
         )}
         {route === "home" ? (
