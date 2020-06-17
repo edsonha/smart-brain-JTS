@@ -32,15 +32,18 @@ class Profile extends React.Component {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        Authorization: window.sessionStorage.getItem("token"),
       },
       body: JSON.stringify({ formInput: data }),
     })
       .then((resp) => {
-        this.props.toggleModal();
-        this.props.loadUser({
-          ...this.props.user,
-          ...data,
-        });
+        if (resp.status === 200 || resp.status === 304) {
+          this.props.toggleModal();
+          this.props.loadUser({
+            ...this.props.user,
+            ...data,
+          });
+        }
       })
       .catch((err) => console.log(err));
   };
